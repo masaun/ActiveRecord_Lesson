@@ -9,7 +9,7 @@ ActiveRecord::Base.establish_connection(
   "database" => "./blog.db"
 )
 
-#どんなSQLが発行されているかターミナルでみれる（上記の記述と合わせて使用する）
+#どんなSQLが発行されているかターミナルでみれる（上記の記述と合わせて使用する。カッコ内はファイル名を指定することもできる。ここでは標準出力を指定）
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 
