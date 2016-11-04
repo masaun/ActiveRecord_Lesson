@@ -14,12 +14,17 @@ ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 
 class Post < ActiveRecord::Base
+  vailidates :title, :presence => true
+  vailidates :body, :length => { :minimum => 5 }
 end
 
+post = Post.new(:body => "123")
 
-# 指定した含意を全て消したい場合
-#Post.where(:id => 1..2).delete_all
+#saveされない場合は、エラーメッセージを表示する
+if !post.save
+  p Post.errors.messages
+end
 
-#全て削除したい場合は、destroy_allを使う。
-Post.find(3).destroy
 p Post.all
+
+
