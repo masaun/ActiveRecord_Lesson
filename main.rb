@@ -17,17 +17,9 @@ class Post < ActiveRecord::Base
 end
 
 
+# 指定した含意を全て消したい場合
+#Post.where(:id => 1..2).delete_all
 
-post = Post.find(1)
-
-# 一つのフィールドを更新したい時
-# post.update_attribute(:title, "(new)title1")
-
-
-# 複数のフィールをを更新したい時は、attributeを複数形にする。
-# post.update_attributes(:title => "nnn", :body => "hhh(new)title1")
-
-
-# 指定した範囲のフィールドを全て更新したい時
-Post.where(:id => 1..2).update_all(:title => "nnn2", :body => "hhh2")
+#全て削除したい場合は、destroy_allを使う。
+Post.find(3).destroy
 p Post.all
