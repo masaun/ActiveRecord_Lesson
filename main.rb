@@ -17,17 +17,17 @@ class Post < ActiveRecord::Base
 end
 
 
-# first_or_createメソッドを使うと、指定したフィールド名が存在する場合はその値を抽出。存在しない場合は新しく作ってくれる。
-# Post.where(:title => "title5").first_or_create
-# p Post.all
+
+post = Post.find(1)
+
+# 一つのフィールドを更新したい時
+# post.update_attribute(:title, "(new)title1")
 
 
-# もし指定したフィールド名が存在する場合はその値を抽出。存在しない場合はpの中でbodyの値も作ってくれる。。
-Post.where(:title => "title6").first_or_create do |p|
-  p.body = "hello6"
-end
+# 複数のフィールをを更新したい時は、attributeを複数形にする。
+# post.update_attributes(:title => "nnn", :body => "hhh(new)title1")
 
+
+# 指定した範囲のフィールドを全て更新したい時
+Post.where(:id => 1..2).update_all(:title => "nnn2", :body => "hhh2")
 p Post.all
-
-
-
