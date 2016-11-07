@@ -14,17 +14,14 @@ ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 
 class Post < ActiveRecord::Base
-  vailidates :title, :presence => true
-  vailidates :body, :length => { :minimum => 5 }
+  has_many :comments
 end
 
-post = Post.new(:body => "123")
-
-#saveされない場合は、エラーメッセージを表示する
-if !post.save
-  p Post.errors.messages
+class Comment < ActiveRecord::Base
+  belongs_to :post
 end
 
-p Post.all
-
-
+post = Post.find(1)
+post.comments.each do |comment|
+  p comment.body
+end
