@@ -14,14 +14,17 @@ ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 
 class Post < ActiveRecord::Base
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 end
 
 class Comment < ActiveRecord::Base
   belongs_to :post
 end
 
-post = Post.find(1)
-post.comments.each do |comment|
-  p comment.body
-end
+p Post.all
+p Comment.all
+
+Post.find(1).destroy
+
+p Post.all
+p Comment.all
